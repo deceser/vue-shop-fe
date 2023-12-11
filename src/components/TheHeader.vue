@@ -35,7 +35,7 @@
         <UserIcon />
       </base-button>
       <base-button class="hide-on-desktop">
-        <MenuIcon @click="toggleCartSideMenu(true)" />
+        <MenuIcon @click="toggleNavSideMenu(true)" />
       </base-button>
     </ul>
   </nav>
@@ -50,13 +50,21 @@
         @close-menu="toggleCartSideMenu(false)"
       />
     </transition>
+
+    <transition
+      name="slideIn"
+      mode="out-in"
+      appear
+    >
+      <NavigationSidebar
+        v-if="showNavSideMenu"
+        @close-menu="toggleNavSideMenu(false)"
+      />
+    </transition>
   </teleport>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import ShoppeLogo from "@/components/icons/ShoppeLogo.vue";
   import CartIcon from "@/components/icons/IconCart.vue";
   import UserIcon from "@/components/icons/IconUser.vue";
@@ -66,6 +74,7 @@
   import { ref } from "vue";
   import { useRouter } from "vue-router";
   import NavigationCartList from "./NavigationCartList.vue";
+  import NavigationSidebar from "./NavigationSidebar.vue";
 
   const router = useRouter();
 
@@ -89,9 +98,14 @@
   };
 
   const showCartSideMenu = ref(false);
+  const showNavSideMenu = ref(false);
 
   const toggleCartSideMenu = (value: boolean): void => {
     showCartSideMenu.value = value;
+  };
+
+  const toggleNavSideMenu = (value: boolean): void => {
+    showNavSideMenu.value = value;
   };
 </script>
 
@@ -156,7 +170,7 @@
   }
 
   .router-link-exact-active {
-    padding-bottom: 2.15rem;
+    padding-bottom: 0.55rem;
     border-bottom: 2px solid #000;
   }
 

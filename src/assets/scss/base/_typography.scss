@@ -56,6 +56,10 @@ body {
   @include typeface(400, 1.6rem, 2.7rem);
 }
 
+.heading-6 {
+  @include typeface(400, 3rem, 4.1rem);
+}
+
 .body-large {
   @include typeface(700, 1.6rem, normal);
 }
