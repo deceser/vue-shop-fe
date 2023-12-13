@@ -32,12 +32,7 @@
           type="text"
           placeholder="Email"
         />
-        <small
-          v-if="errors.email"
-          class="input__error error-text"
-          >{{ errors.email }}</small
-        >
-        <small v-else>noerror</small>
+        <small class="input__error error-text">{{ errors.email }}</small>
       </div>
       <div class="auth-form__section">
         <BaseInput
@@ -100,7 +95,7 @@
 
   const rememberMe = ref(false);
 
-  const { meta, errors, handleSubmit, resetForm, isSubmitting, email, emailProps, pass, passProps } = useValidation();
+  const { errors, handleSubmit, resetForm, isSubmitting, email, emailProps, pass, passProps } = useValidation();
 
   const onSubmit = handleSubmit(async values => {
     // Simulates a 1 second delay
