@@ -21,23 +21,34 @@
 
     <form
       class="auth-form"
-      @submit.prevent="authenticate"
+      @submit.prevent="onSubmit"
+      autocomplete="off"
     >
       <div class="auth-form__section">
         <BaseInput
-          v-model="emailAddress"
+          v-model="email"
+          v-bind="emailProps"
           id="emaillAddress"
           type="text"
           placeholder="Email"
         />
+        <small
+          v-if="errors.email"
+          class="input__error error-text"
+          >{{ errors.email }}</small
+        >
+        <small v-else>noerror</small>
       </div>
       <div class="auth-form__section">
         <BaseInput
-          v-model="password"
+          v-model="pass"
+          v-bind="passProps"
           id="password"
           type="password"
           placeholder="Password"
         />
+
+        <small class="input__error error-text">{{ errors.pass }}</small>
       </div>
       <div class="auth-form__checkbox">
         <BaseCheckbox
@@ -48,6 +59,14 @@
       </div>
       <div class="auth-form__submit">
         <BaseButton
+          v-if="isSubmitting"
+          text="Loading"
+          variant="solid-black"
+          size="large"
+        />
+
+        <BaseButton
+          v-else
           text="SIGN IN"
           variant="solid-black"
           size="large"
@@ -66,12 +85,11 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { ref } from "vue";
   import { RouterLink } from "vue-router";
+
+  import { useValidation } from "../utils/validation";
 
   type AuthSection = "sign-in" | "register";
 
@@ -80,14 +98,22 @@
     currentAuthTab.value = value;
   };
 
-  const emailAddress = ref("");
-  const password = ref("");
   const rememberMe = ref(false);
 
-  const authenticate = () => {
-    console.log(emailAddress.value);
-    console.log(password.value);
-  };
+  const { meta, errors, handleSubmit, resetForm, isSubmitting, email, emailProps, pass, passProps } = useValidation();
+
+  const onSubmit = handleSubmit(async values => {
+    // Simulates a 1 second delay
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Need save in store
+      alert(`email: ${values.email}, \npassword: ${values.pass}, \nthis fake auth`);
+    } catch (error) {
+      console.error("An error occurred during submission:", error);
+    } finally {
+      resetForm();
+    }
+  });
 </script>
 
 <style lang="scss">
