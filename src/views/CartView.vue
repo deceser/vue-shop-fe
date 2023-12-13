@@ -26,7 +26,7 @@
             <p class="heading heading-5 dark-gray-text">
               Shipping costs will be calculated once you have provided address.
             </p>
-            <CartShippingCalculator />
+            <!-- <CartShippingCalculator /> -->
           </div>
         </div>
         <div class="cart-totals__total flex items-center space-between">
@@ -53,12 +53,9 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { RouterLink } from "vue-router";
-  import CartShippingCalculator from "@/components/CartShippingCalculator.vue";
+  // import CartShippingCalculator from "@/components/CartShippingCalculator.vue";
   import CartProductList from "@/components/CartProductList.vue";
   import CartProductItem from "@/components/CartProductItem.vue";
   import CartApplyCoupon from "@/components/CartApplyCoupon.vue";
@@ -83,6 +80,14 @@
 
       @media screen and (min-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    &__items {
+      margin-top: 3.9rem;
+
+      @media screen and (min-width: 768px) {
+        padding: 3.9rem 5.9rem;
       }
     }
 
