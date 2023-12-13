@@ -8,7 +8,7 @@ interface MyForm {
 }
 
 export const useValidation = () => {
-  const { values, errors, defineField, handleSubmit, resetForm, isSubmitting, meta } = useForm<MyForm>({
+  const { values, errors, defineField, handleSubmit, resetForm, isSubmitting } = useForm<MyForm>({
     validationSchema: authSchemas,
   });
 
@@ -25,6 +25,5 @@ export const useValidation = () => {
     emailProps,
     pass,
     passProps,
-    meta,
   };
 };
