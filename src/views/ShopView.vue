@@ -96,14 +96,21 @@
       </div>
       <!-- PRODUCTS -->
       <div class="shop-page__products">
-        <product-card-list v-if="filteredProducts && filteredProducts.length > 0">
+        <product-card-list>
+          <ProductCardItemSkeleton
+            v-if="ProductStore.isLoading"
+            v-for="_ in [...Array(6)]"
+          >
+          </ProductCardItemSkeleton>
           <product-card-item
+            v-if="filteredProducts.length"
             v-for="product in filteredProducts"
             :product="product"
           ></product-card-item>
         </product-card-list>
+
         <EmptyState
-          v-else
+          v-if="!filteredProducts.length"
           type="shop"
           heading="No product found!"
           message="We could not find any product matching the selected filters. Kindly try out other filters to check out some of our other amazing products."
@@ -113,21 +120,26 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
+  import { computed, onMounted, onUnmounted, ref } from "vue";
+  import Slider from "@vueform/slider";
+
   import ProductCardList from "@/components/ProductCardList.vue";
   import ProductCardItem from "@/components/ProductCardItem.vue";
-  import useProductStore from "@/stores/ProductStore";
-  import { computed, onMounted, onUnmounted, ref } from "vue";
   import SearchIcon from "../components/icons/IconSearch.vue";
-  import Slider from "@vueform/slider";
   import EmptyState from "../components/EmptyState.vue";
   import FilterIcon from "../components/icons/IconFilter.vue";
   import CloseIcon from "../components/icons/IconClose.vue";
+  import ProductCardItemSkeleton from "@/components/ProductCardItemSkeleton.vue";
 
-  const ProductStore = useProductStore();
+  import useProductStore from "@/stores/ProductStore";
+  import { fetchingProducts } from "@/stores/FetchingProductStore";
+
+  const ProductStore = fetchingProducts();
+
+  onMounted(async () => {
+    await ProductStore.fetchProducts();
+  });
 
   interface Product {
     image: string;
@@ -198,7 +210,7 @@
     return filterProductsByPrice(
       filterProductsByName(
         filterProductsByCategory(
-          sortProductsByValue(productsThatAreInStock(productsThatAreOnSale(ProductStore.allProducts)))
+          sortProductsByValue(productsThatAreInStock(productsThatAreOnSale(ProductStore.products)))
         )
       )
     );

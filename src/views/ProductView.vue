@@ -52,11 +52,12 @@
     </div>
 
     <!-- SIMILAR ITEMS -->
+
     <section class="similar-items">
       <h3 class="similar-items__heading heading-2">Similar Items</h3>
       <product-card-list>
         <product-card-item
-          v-for="product in similarProducts"
+          v-for="product in products"
           :product="product"
         ></product-card-item>
       </product-card-list>
@@ -64,26 +65,25 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import ProductCardList from "@/components/ProductCardList.vue";
   import ProductCardItem from "@/components/ProductCardItem.vue";
-  import useProductStore from "@/stores/ProductStore";
   import ProductChangeSelectedTab from "@/components/ProductChangeSelectedTab.vue";
-  import { ref, watchEffect } from "vue";
+  import { ref, onMounted } from "vue";
   import { useRoute, useRouter } from "vue-router";
   import ProductReviewForm from "@/components/ProductReviewForm.vue";
   import ProductReviewList from "@/components/ProductReviewList.vue";
   import ProductInformation from "@/components/ProductInformation.vue";
   import ProductImageGallery from "@/components/ProductImageGallery.vue";
 
-  const ProductStore = useProductStore();
+  import { fetchingProducts } from "@/stores/FetchingProductStore";
+  import { fetchingProductSlug } from "@/stores/GetProductSlug";
+
+  const ProductStore = fetchingProducts();
+  const ProductSlug = fetchingProductSlug();
+
   const route = useRoute();
   const router = useRouter();
-
-  const similarProducts = ProductStore.allProducts.slice(0, 3);
 
   type TabChoices = "description" | "additional-information" | "reviews";
   const selectedTab = ref<TabChoices>("description");
@@ -104,18 +104,27 @@
   }
 
   const product = ref<Product>();
+  const products = ref();
 
-  watchEffect(() => {
-    const slug = route.params.slug as string;
-    product.value = ProductStore.singleProduct(slug);
+  onMounted(async () => {
+    const productSlug = route.params.slug as string;
+    await ProductStore.fetchProducts();
+    await ProductSlug.fetchProductBySlug(productSlug);
 
-    if (route.name === "product-slug" && product.value === undefined) {
+    product.value = ProductStore.singleProduct(productSlug);
+    products.value = ProductStore.products.slice(0, 3);
+
+    if (!product.value) {
       router.push("/page-not-found");
     }
   });
 </script>
 
 <style lang="scss">
+  .loader {
+    width: 150px;
+    height: 150px;
+  }
   .single-product {
     &__heading {
       display: grid;
