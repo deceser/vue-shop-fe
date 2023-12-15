@@ -21,8 +21,13 @@
         </router-link>
       </div>
       <product-card-list>
+        <ProductCardItemSkeleton
+          v-if="products.isLoading"
+          v-for="_ in [...Array(6)]"
+        >
+        </ProductCardItemSkeleton>
         <product-card-item
-          v-for="product in ProductStore.allProducts"
+          v-for="product in products.products"
           :product="product"
         ></product-card-item>
       </product-card-list>
@@ -30,19 +35,23 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
-  import { reactive } from "vue";
-  import ProductCardList from "@/components/ProductCardList.vue";
-  import ProductCardItem from "@/components/ProductCardItem.vue";
-  import HomeSliderItem from "@/components/HomeSliderItem.vue";
-  import useProductStore from "@/stores/ProductStore";
+<script setup lang="ts">
+  import { reactive, onMounted } from "vue";
   import { Splide, SplideSlide } from "@splidejs/vue-splide";
   import "@splidejs/vue-splide/css";
 
-  const ProductStore = useProductStore();
+  import ProductCardList from "@/components/ProductCardList.vue";
+  import ProductCardItem from "@/components/ProductCardItem.vue";
+  import HomeSliderItem from "@/components/HomeSliderItem.vue";
+  import ProductCardItemSkeleton from "@/components/ProductCardItemSkeleton.vue";
+
+  import { fetchingProducts } from "@/stores/FetchingProductStore";
+
+  const products = fetchingProducts();
+
+  onMounted(async () => {
+    await products.fetchProducts();
+  });
 
   const sliderOptions = reactive({
     arrows: false,
