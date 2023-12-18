@@ -95,10 +95,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { ref } from "vue";
   import PayPalIcon from "./icons/IconPayPal.vue";
 
@@ -113,7 +110,7 @@
   defineEmits(["place-order"]);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .order-summary {
     &__wrapper {
       background-color: var(--light-gray);

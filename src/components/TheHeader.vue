@@ -10,7 +10,7 @@
     </div>
     <ul class="navigation__links position-relative w-100 items-center space-between">
       <li
-        v-for="link in navigationLinks"
+        v-for="link in navigationHeader"
         :key="link.path"
         class="navigation__item navigation__item--navbar"
       >
@@ -65,33 +65,29 @@
 </template>
 
 <script setup lang="ts">
-  import ShoppeLogo from "@/components/icons/ShoppeLogo.vue";
+  import { ref } from "vue";
+  import { useRouter, RouterLink } from "vue-router";
+
+  import { navigationLinks } from "@/utils/data/navigationLinks";
+
   import CartIcon from "@/components/icons/IconCart.vue";
   import UserIcon from "@/components/icons/IconUser.vue";
-  import SearchIcon from "@/components/icons/IconSearch.vue";
   import MenuIcon from "@/components/icons/IconMenu.vue";
-  import { RouterLink } from "vue-router";
-  import { ref } from "vue";
-  import { useRouter } from "vue-router";
-  import NavigationCartList from "./NavigationCartList.vue";
+  import ShoppeLogo from "@/components/icons/ShoppeLogo.vue";
+  import SearchIcon from "@/components/icons/IconSearch.vue";
+
   import NavigationSidebar from "./NavigationSidebar.vue";
+  import NavigationCartList from "./NavigationCartList.vue";
 
   const router = useRouter();
 
-  const navigationLinks = ref([
-    {
-      name: "Shop",
-      path: "shop",
-    },
-    {
-      name: "Blog",
-      path: "blog",
-    },
-    {
-      name: "Our Story",
-      path: "about",
-    },
-  ]);
+  interface Links {
+    name?: string;
+    path?: string;
+  }
+
+  const navigation = ref<Links[]>(navigationLinks);
+  const navigationHeader = navigation.value.slice(0, -1);
 
   const goToDashboard = () => {
     router.push({ name: "auth" });
@@ -109,7 +105,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .navigation {
     justify-content: space-between;
     padding-bottom: 1.7rem;

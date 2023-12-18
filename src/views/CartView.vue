@@ -55,17 +55,19 @@
 
 <script setup lang="ts">
   import { RouterLink } from "vue-router";
-  // import CartShippingCalculator from "@/components/CartShippingCalculator.vue";
+
+  import useCartStore from "@/stores/CartStore";
+
+  import EmptyState from "@/components/EmptyState.vue";
   import CartProductList from "@/components/CartProductList.vue";
   import CartProductItem from "@/components/CartProductItem.vue";
   import CartApplyCoupon from "@/components/CartApplyCoupon.vue";
-  import useCartStore from "@/stores/CartStore";
-  import EmptyState from "@/components/EmptyState.vue";
+  // import CartShippingCalculator from "@/components/CartShippingCalculator.vue";
 
   const CartStore = useCartStore();
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .shopping-cart {
     &__title {
       margin-bottom: 3.2rem;

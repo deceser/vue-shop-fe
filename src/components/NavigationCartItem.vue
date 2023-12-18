@@ -37,11 +37,9 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import useCartStore from "../stores/CartStore";
+
   interface Product {
     image: string;
     price: number;
@@ -60,7 +58,7 @@
   const CartStore = useCartStore();
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .nav-product {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

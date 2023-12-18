@@ -35,10 +35,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { computed, reactive, ref, watch } from "vue";
   import statesData from "@/data/nigeria-state-and-lgas.json";
 
@@ -81,7 +78,7 @@
   watch(selectedState, () => (selectedLGA.value = ""));
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .shipping {
     &__title {
       margin-bottom: 2.3rem;

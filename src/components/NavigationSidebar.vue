@@ -13,7 +13,7 @@
 
     <div class="navigation-sidebar__body position-relation">
       <li
-        v-for="link in navigationLinks"
+        v-for="link in navigation"
         :key="link.path"
       >
         <router-link
@@ -27,30 +27,21 @@
 </template>
 
 <script setup lang="ts">
+  import { watch } from "vue";
+  import { useRoute, RouterLink } from "vue-router";
+
+  import { navigationLinks } from "../utils/data/navigationLinks";
+
   import ShoppeLogo from "@/components/icons/ShoppeLogo.vue";
-  import { RouterLink } from "vue-router";
-  import { watch, ref } from "vue";
-  import { useRoute } from "vue-router";
+
   const route = useRoute();
 
-  const navigationLinks = ref([
-    {
-      name: "Shop",
-      path: "shop",
-    },
-    {
-      name: "Blog",
-      path: "blog",
-    },
-    {
-      name: "Our Story",
-      path: "about",
-    },
-    {
-      name: "My Account",
-      path: "auth",
-    },
-  ]);
+  interface Links {
+    name?: string;
+    path?: string;
+  }
+
+  const navigation: Links[] = navigationLinks;
 
   const emit = defineEmits(["close-menu"]);
 
@@ -59,7 +50,7 @@
   });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .navigation-sidebar {
     background: var(--white-color);
     border: 0.1rem solid var(--gray);

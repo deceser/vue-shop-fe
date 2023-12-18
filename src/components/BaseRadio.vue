@@ -19,10 +19,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { computed } from "@vue/reactivity";
 
   interface Props {
@@ -38,7 +35,7 @@
   const isChecked = computed(() => props.modelValue === props.value);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .radio {
     gap: 0.8rem;
     max-width: max-content;

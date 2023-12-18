@@ -101,7 +101,6 @@
     // Simulates a 1 second delay
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
-      // Need save in store
       alert(`email: ${values.email}, \npassword: ${values.pass}, \nthis fake auth`);
     } catch (error) {
       console.error("An error occurred during submission:", error);
@@ -111,7 +110,7 @@
   });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .auth-page {
     max-width: 50rem;
 

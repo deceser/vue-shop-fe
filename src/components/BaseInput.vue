@@ -8,6 +8,7 @@
     >
     <input
       class="input__field"
+      autocomplete="current-password"
       :value="modelValue"
       :type="type"
       :name="id"
@@ -24,15 +25,12 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   interface Props {
     id: string;
     type: string;
     label?: string;
-    modelValue: string | number;
+    modelValue: string | number | undefined;
     placeholder?: string;
     error?: boolean;
   }

@@ -8,14 +8,11 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import ProductReviewListItem from "./ProductReviewListItem.vue";
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .reviews {
     &__title {
       margin-bottom: 2.6rem;

@@ -26,19 +26,13 @@
   </div>
 </template>
 
-<script
-  lang="ts"
-  setup
->
+<script lang="ts" setup>
   import { ref } from "vue";
 
   const emailAddress = ref("");
 </script>
 
-<style
-  lang="scss"
-  scoped
->
+<style lang="scss" scoped>
   .forgot-password {
     max-width: 56.1rem;
 

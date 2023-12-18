@@ -3,7 +3,7 @@
     <div class="footer__top flex items-center space-between">
       <ul class="footer__navigation flex space-between w-100">
         <li
-          v-for="link in footerLinks"
+          v-for="link in links"
           :key="link.name"
           class="navigation__item"
         >
@@ -49,20 +49,17 @@
       </p>
       <ul class="footer__socials w-100 flex items-center space-between">
         <li
-          v-for="social in footerSocials"
-          :key="social.type"
+          v-for="social in socials"
+          :key="social.path"
           class="navigation__item"
         >
           <a
-            :href="social.url"
+            :href="social.path"
             target="_blank"
             rel="noopener noreferrer"
             class="navigation__link--light"
           >
-            <LinkedinIcon v-if="social.type === 'linkedin'" />
-            <FacebookIcon v-if="social.type === 'facebook'" />
-            <InstagramIcon v-if="social.type === 'instagram'" />
-            <TwitterIcon v-if="social.type === 'twitter'" />
+            <component :is="social.icon" />
           </a>
         </li>
       </ul>
@@ -70,52 +67,26 @@
   </footer>
 </template>
 
-<script
-  lang="ts"
-  setup
->
+<script lang="ts" setup>
+  import { ref, computed } from "vue";
   import { RouterLink } from "vue-router";
-  import FacebookIcon from "@/components/icons/IconFacebook.vue";
-  import InstagramIcon from "@/components/icons/IconInstagram.vue";
-  import TwitterIcon from "@/components/icons/IconTwitter.vue";
-  import LinkedinIcon from "@/components/icons/IconLinkedin.vue";
+
+  import { footerLinks, footerSocials } from "../utils/data/footerLinks";
+
   import RightArrowIcon from "@/components/icons/IconArrowRight.vue";
 
-  import { ref, computed } from "vue";
+  interface FooterLinks {
+    name: string;
+    path: string;
+  }
 
-  const footerLinks = ref([
-    {
-      name: "contact",
-      path: "contact",
-    },
-    {
-      name: "terms of services",
-      path: "terms-of-service",
-    },
-    {
-      name: "shipping and returns",
-      path: "shipping-and-returns",
-    },
-  ]);
+  interface FooterSocials {
+    icon: object;
+    path: string;
+  }
 
-  const footerSocials = ref([
-    {
-      type: "linkedin",
-      url: "#",
-    },
-    {
-      type: "facebook",
-      url: "#",
-    },
-    {
-      type: "instagram",
-      url: "#",
-    },
-    {
-      type: "twitter",
-      url: "#",
-    },
-  ]);
+  const links: FooterLinks[] = footerLinks;
+  const socials: FooterSocials[] = footerSocials;
 
   const currentYear = computed(() => new Date().getFullYear());
 
@@ -128,11 +99,10 @@
       invalidEmailAddress.value = true;
       return;
     }
-    console.log(emailAddress.value);
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @mixin footer-flex($initial-direction) {
     flex-direction: $initial-direction;
     align-items: flex-start;

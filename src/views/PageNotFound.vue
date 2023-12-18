@@ -13,14 +13,11 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { RouterLink } from "vue-router";
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .error-404 {
     margin: 20rem auto;
     max-width: 43.6rem;

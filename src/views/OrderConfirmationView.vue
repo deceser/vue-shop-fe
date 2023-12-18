@@ -20,20 +20,16 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { useRoute } from "vue-router";
+
   import OrderSummary from "../components/OrderSummary.vue";
   import OrderDetails from "../components/OrderDetails.vue";
 
   const route = useRoute();
-
-  console.log(route.query);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .order-confirmation {
     &__alert {
       margin-top: 5.4rem;

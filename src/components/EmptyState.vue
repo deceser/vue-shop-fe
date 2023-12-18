@@ -24,10 +24,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   interface Props {
     type: string;
     heading: string;
@@ -38,7 +35,7 @@
   defineProps<Props>();
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .empty-state {
     max-width: 50rem;
     margin: 5rem auto;

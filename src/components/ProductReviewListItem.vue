@@ -20,17 +20,14 @@
   </div>
 </template>
 
-<script
-  lang="ts"
-  setup
->
+<script lang="ts" setup>
   import { ref } from "vue";
   import vue3starRatings from "vue3-star-ratings";
 
   const star = ref(3);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .review {
     max-width: 90%;
 
