@@ -16,16 +16,13 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { ref } from "vue";
 
   const couponCode = ref("");
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .coupon {
     gap: 2.4rem 2rem;
     flex-direction: column;

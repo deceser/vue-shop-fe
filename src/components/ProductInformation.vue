@@ -53,44 +53,17 @@
         <HeartIcon />
       </button>
       <ul class="single-product__socials flex items-center">
-        <li>
+        <li
+          v-for="social in socials"
+          :key="social.path"
+        >
           <a
-            href="#"
+            :href="social.path"
             target="_blank"
             rel="noopener noreferrer"
             class="navigation__link navigation__link--light"
           >
-            <MailIcon />
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="navigation__link navigation__link--light"
-          >
-            <FacebookIcon />
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="navigation__link navigation__link--light"
-          >
-            <InstagramIcon />
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="navigation__link navigation__link--light"
-          >
-            <TwitterIcon />
+            <component :is="social.icon" />
           </a>
         </li>
       </ul>
@@ -108,24 +81,28 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
-  import HeartIcon from "./icons/IconHeart.vue";
-  import MailIcon from "./icons/IconMail.vue";
-  import TwitterIcon from "./icons/IconTwitter.vue";
-  import InstagramIcon from "./icons/IconInstagram.vue";
-  import FacebookIcon from "./icons/IconFacebook.vue";
-  import vue3starRatings from "vue3-star-ratings";
+<script setup lang="ts">
   import { ref } from "vue";
   import { useRoute } from "vue-router";
+  import vue3starRatings from "vue3-star-ratings";
+
   import useCartStore from "@/stores/CartStore";
+  import { socialLinks } from "../utils/data/socailLinks";
+
+  import HeartIcon from "./icons/IconHeart.vue";
+
   const route = useRoute();
   const CartStore = useCartStore();
 
   const star = ref(5);
   const productCount = ref(1);
+
+  interface Social {
+    icon: object;
+    path: string;
+  }
+
+  const socials: Social[] = socialLinks;
 
   interface Product {
     image: string;
@@ -151,7 +128,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .single-product {
     margin-top: 3rem;
 

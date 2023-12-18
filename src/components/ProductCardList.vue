@@ -4,12 +4,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
-></script>
-
-<style lang="scss">
+<style lang="scss" scoped>
   .products-list {
     display: grid;
     gap: 2.4rem 1.6rem;

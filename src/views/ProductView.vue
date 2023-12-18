@@ -66,18 +66,19 @@
 </template>
 
 <script setup lang="ts">
-  import ProductCardList from "@/components/ProductCardList.vue";
-  import ProductCardItem from "@/components/ProductCardItem.vue";
-  import ProductChangeSelectedTab from "@/components/ProductChangeSelectedTab.vue";
   import { ref, onMounted } from "vue";
   import { useRoute, useRouter } from "vue-router";
+
+  import { fetchingProducts } from "@/stores/FetchingProductStore";
+  import { fetchingProductSlug } from "@/stores/GetProductSlug";
+
+  import ProductCardList from "@/components/ProductCardList.vue";
+  import ProductCardItem from "@/components/ProductCardItem.vue";
   import ProductReviewForm from "@/components/ProductReviewForm.vue";
   import ProductReviewList from "@/components/ProductReviewList.vue";
   import ProductInformation from "@/components/ProductInformation.vue";
   import ProductImageGallery from "@/components/ProductImageGallery.vue";
-
-  import { fetchingProducts } from "@/stores/FetchingProductStore";
-  import { fetchingProductSlug } from "@/stores/GetProductSlug";
+  import ProductChangeSelectedTab from "@/components/ProductChangeSelectedTab.vue";
 
   const ProductStore = fetchingProducts();
   const ProductSlug = fetchingProductSlug();
@@ -120,7 +121,7 @@
   });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .loader {
     width: 150px;
     height: 150px;

@@ -34,10 +34,7 @@
   </label>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   interface Props {
     label?: string;
     id: string;
@@ -51,10 +48,7 @@
   defineEmits(["update:modelValue"]);
 </script>
 
-<style
-  lang="scss"
-  scoped
->
+<style lang="scss" scoped>
   .checkbox {
     max-width: max-content;
 

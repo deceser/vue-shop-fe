@@ -124,6 +124,11 @@
   import { computed, onMounted, onUnmounted, ref } from "vue";
   import Slider from "@vueform/slider";
 
+  import { fetchingProducts } from "@/stores/FetchingProductStore";
+
+  import { shopByOptions } from "../utils/data/shopByOptions";
+  import { sortByOptions } from "../utils/data/sortByOptions";
+
   import ProductCardList from "@/components/ProductCardList.vue";
   import ProductCardItem from "@/components/ProductCardItem.vue";
   import SearchIcon from "../components/icons/IconSearch.vue";
@@ -131,9 +136,6 @@
   import FilterIcon from "../components/icons/IconFilter.vue";
   import CloseIcon from "../components/icons/IconClose.vue";
   import ProductCardItemSkeleton from "@/components/ProductCardItemSkeleton.vue";
-
-  import useProductStore from "@/stores/ProductStore";
-  import { fetchingProducts } from "@/stores/FetchingProductStore";
 
   const ProductStore = fetchingProducts();
 
@@ -216,32 +218,6 @@
     );
   });
 
-  const shopByOptions = [
-    {
-      key: "earring",
-      value: "Earrings",
-    },
-    {
-      key: "pin",
-      value: "Pins",
-    },
-    {
-      key: "necklace",
-      value: "Necklaces",
-    },
-  ];
-
-  const sortByOptions = [
-    {
-      key: "name",
-      value: "Name",
-    },
-    {
-      key: "price",
-      value: "Price",
-    },
-  ];
-
   const toggleFilterContainer = () => {
     showFilterContainer.value = !showFilterContainer.value;
   };
@@ -261,8 +237,7 @@
   });
 </script>
 
-<style src="@vueform/slider/themes/default.css"></style>
-<style lang="scss">
+<style lang="scss" scoped>
   .shop-page {
     &__title {
       margin-bottom: 3.9rem;

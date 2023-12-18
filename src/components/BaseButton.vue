@@ -9,10 +9,7 @@
   </button>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { computed } from "vue";
 
   type ButtonType = "submit" | "button" | "reset";

@@ -12,12 +12,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
-></script>
-
-<style lang="scss">
+<style lang="scss" scoped>
   .cart-product__list {
     margin-bottom: 3.2rem;
 

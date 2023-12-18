@@ -12,12 +12,7 @@
   </section>
 </template>
 
-<script
-  setup
-  lang="ts"
-></script>
-
-<style lang="scss">
+<style lang="scss" scoped>
   .home-slider {
     background-image: url("../assets/images/header.png");
     background-position: center;

@@ -50,19 +50,18 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
-  import { RouterLink } from "vue-router";
+<script setup lang="ts">
+  import { watch } from "vue";
+  import { useRoute, RouterLink } from "vue-router";
+
+  import EmptyState from "./EmptyState.vue";
   import useCartStore from "@/stores/CartStore";
   import NavigationCartItem from "./NavigationCartItem.vue";
-  import { watch } from "vue";
-  import { useRoute } from "vue-router";
-  import EmptyState from "./EmptyState.vue";
+
   const route = useRoute();
 
   const CartStore = useCartStore();
+
   const emit = defineEmits(["close-menu"]);
 
   watch(route, () => {
@@ -70,7 +69,7 @@
   });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .navigation-cart {
     background: var(--white-color);
     border: 0.1rem solid var(--gray);

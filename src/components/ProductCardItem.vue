@@ -36,14 +36,12 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
-  import CartIcon from "./icons/IconCart.vue";
-  import EyeIcon from "./icons/IconEye.vue";
-  import HeartIcon from "./icons/IconHeart.vue";
+<script setup lang="ts">
   import { useRouter } from "vue-router";
+
+  import EyeIcon from "./icons/IconEye.vue";
+  import CartIcon from "./icons/IconCart.vue";
+  import HeartIcon from "./icons/IconHeart.vue";
   import useCartStore from "../stores/CartStore";
 
   interface Product {
@@ -61,22 +59,21 @@
     product: Product;
   }
 
-  const props = defineProps<Props>();
+  const CartStore = useCartStore();
 
+  const props = defineProps<Props>();
   const router = useRouter();
 
   const viewProduct = (slug: string) => {
     router.push({ name: "product-slug", params: { slug } });
   };
 
-  const CartStore = useCartStore();
-
   const addProductToCart = () => {
     CartStore.addItemToCart(props.product.slug, 1);
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .product {
     width: 100%;
 

@@ -133,14 +133,12 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { reactive, ref } from "vue";
   import { RouterLink, useRouter } from "vue-router";
-  import CartApplyCoupon from "@/components/CartApplyCoupon.vue";
+
   import OrderSummary from "@/components/OrderSummary.vue";
+  import CartApplyCoupon from "@/components/CartApplyCoupon.vue";
 
   const router = useRouter();
 
@@ -157,10 +155,11 @@
   const phoneNumber = ref("");
   const orderNotes = ref("");
   const country = ref("");
+
   const countries = reactive([
     {
-      key: "nigeria",
-      value: "Nigeria",
+      key: "ua",
+      value: "Ukraine",
     },
   ]);
   const createAccount = ref(false);
@@ -179,7 +178,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .checkout-page {
     &__title {
       margin-bottom: 6.4rem;

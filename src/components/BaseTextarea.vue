@@ -24,10 +24,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   interface Props {
     id: string;
     label?: string;

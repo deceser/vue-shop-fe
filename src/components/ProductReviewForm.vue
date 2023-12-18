@@ -59,10 +59,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { ref } from "vue";
   import vue3starRatings from "vue3-star-ratings";
 
@@ -73,7 +70,7 @@
   const rating = ref(0);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .review-form {
     &__heading {
       margin-bottom: 1.1rem;

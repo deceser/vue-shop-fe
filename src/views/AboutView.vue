@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .about-page {
     max-width: 67rem;
 

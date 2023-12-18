@@ -37,10 +37,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import useCartStore from "@/stores/CartStore";
 
   interface Product {
@@ -61,7 +58,7 @@
   const CartStore = useCartStore();
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .cart-item {
     display: grid;
     grid-template-columns: 13.6rem auto;

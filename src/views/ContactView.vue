@@ -60,10 +60,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import { ref } from "vue";
 
   const firstName = ref("");
@@ -73,7 +70,7 @@
   const message = ref("");
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .contact-page {
     &__title {
       margin-bottom: 6.2rem;

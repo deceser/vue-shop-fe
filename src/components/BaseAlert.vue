@@ -8,10 +8,7 @@
   </div>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   import CircleCheckIcon from "./icons/IconCircleCheck.vue";
 
   interface Props {
@@ -21,7 +18,7 @@
   defineProps<Props>();
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .alert {
     padding: 2rem 2.9rem;
     background-color: var(--light-gray);

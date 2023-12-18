@@ -22,10 +22,7 @@
   </ul>
 </template>
 
-<script
-  setup
-  lang="ts"
->
+<script setup lang="ts">
   type TabChoices = "description" | "additional-information" | "reviews";
 
   interface Props {
@@ -44,7 +41,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .tab {
     transform: matrix(0.71, 0, inf, nan, 0, 0);
     gap: 9.6rem;

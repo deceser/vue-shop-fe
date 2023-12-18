@@ -39,13 +39,10 @@
   </section>
 </template>
 
-<script
-  setup
-  lang="ts"
->
-  import { Splide, SplideSlide, Options } from "@splidejs/vue-splide";
-  import "@splidejs/vue-splide/css";
+<script setup lang="ts">
   import { onMounted, reactive, ref } from "vue";
+  import { Splide, SplideSlide, type Options } from "@splidejs/vue-splide";
+  import "@splidejs/vue-splide/css";
 
   interface Props {
     image: string;
@@ -90,7 +87,7 @@
   });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .single-product {
     &__gallery {
       display: grid;
