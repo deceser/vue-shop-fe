@@ -16,6 +16,7 @@
         <button
           class="button heading-5 dark-gray-text"
           @click="CartStore.decreaseCartItemCount(product.slug)"
+          :disabled="product.count === 1"
         >
           -
         </button>
