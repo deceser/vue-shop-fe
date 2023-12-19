@@ -237,6 +237,7 @@
   });
 </script>
 
+<style src="@vueform/slider/themes/default.css"></style>
 <style lang="scss" scoped>
   .shop-page {
     &__title {
