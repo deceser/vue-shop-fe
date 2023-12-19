@@ -7,10 +7,13 @@
       />
       <div class="product__badges position-absolute">
         <base-badge v-if="product.discountValue > 0"> -{{ product.discountValue }}% </base-badge>
-        <base-badge v-if="product.stock === 0">Sold out</base-badge>
       </div>
       <div class="product__image--overlay position-absolute flex items-center content-center">
-        <ul class="product__icons flex items-center flex-center">
+        <base-badge v-if="product.stock === 0">Sold out</base-badge>
+        <ul
+          v-else
+          class="product__icons flex items-center flex-center"
+        >
           <li class="product__icon">
             <base-button @click="addProductToCart">
               <CartIcon />

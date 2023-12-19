@@ -1,6 +1,8 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
-import useProductStore from "./ProductStore";
 import { notify } from "@kyvg/vue3-notification";
+
+import useProductStore from "./ProductStore";
+import { string } from "yup";
 
 interface CartItem {
   slug: string;
@@ -20,10 +22,15 @@ interface CartProduct extends CartItem {
 const useCartStore = defineStore("CartStore", {
   state: () => {
     return {
-      cartItems: [] as CartItem[],
+      cartItems: (JSON.parse(localStorage.getItem("cartItems") || "") as CartItem[]) || [],
     };
   },
+
   actions: {
+    saveToLocalStorage() {
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+    },
+
     addItemToCart(slug: string, count = 1) {
       // First check if the product is already in the cart before adding to cart. If it exists, increase the count. If not, add to cart
       const cartItemIndex = this.cartItems.findIndex(product => product.slug === slug);
@@ -37,6 +44,8 @@ const useCartStore = defineStore("CartStore", {
         text: "Product have been added to cart successfully 🎉!",
         duration: 500,
       });
+
+      this.saveToLocalStorage();
     },
 
     removeItemFromCart(slug: string) {
@@ -46,18 +55,25 @@ const useCartStore = defineStore("CartStore", {
         text: "Product have been removed from cart successfully 🎉!",
         duration: 500,
       });
+
+      this.saveToLocalStorage();
     },
 
     increaseCartItemCount(slug: string) {
       const cartItemIndex = this.cartItems.findIndex(cartItem => cartItem.slug === slug);
       this.cartItems[cartItemIndex].count++;
+
+      this.saveToLocalStorage();
     },
 
     decreaseCartItemCount(slug: string) {
       const cartItemIndex = this.cartItems.findIndex(cartItem => cartItem.slug === slug);
       this.cartItems[cartItemIndex].count--;
+
+      this.saveToLocalStorage();
     },
   },
+
   getters: {
     productsInCart(state) {
       const ProductStore = useProductStore();
