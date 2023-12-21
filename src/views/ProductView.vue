@@ -1,12 +1,18 @@
 <template>
   <div
-    v-if="product"
+    class="load"
+    v-if="ProductSlug.isLoading"
+  >
+    <TheLoader />
+  </div>
+  <div
+    v-else
     class="single-product"
   >
     <!-- PRODUCT IMAGE GALLERY AND INFORMATION -->
     <div class="single-product__heading">
-      <ProductImageGallery :image="product.image" />
-      <ProductInformation :product="product" />
+      <ProductImageGallery :image="ProductSlug.productSlug?.image" />
+      <ProductInformation :product="ProductSlug?.productSlug" />
     </div>
 
     <!-- PRODUCT TAB CHANGER -->
@@ -72,6 +78,7 @@
   import { fetchingProducts } from "@/stores/FetchingProductStore";
   import { fetchingProductSlug } from "@/stores/GetProductSlug";
 
+  import TheLoader from "@/components/TheLoader.vue";
   import ProductCardList from "@/components/ProductCardList.vue";
   import ProductCardItem from "@/components/ProductCardItem.vue";
   import ProductReviewForm from "@/components/ProductReviewForm.vue";
@@ -93,29 +100,16 @@
     selectedTab.value = tab;
   };
 
-  interface Product {
-    image: string;
-    name: string;
-    price: number;
-    category: string;
-    stock: number;
-    discountValue: number;
-    variant: string;
-    slug: string;
-  }
-
-  const product = ref<Product>();
   const products = ref();
 
   onMounted(async () => {
     const productSlug = route.params.slug as string;
-    await ProductStore.fetchProducts();
     await ProductSlug.fetchProductBySlug(productSlug);
 
-    product.value = ProductStore.singleProduct(productSlug);
+    await ProductStore.fetchProducts();
     products.value = ProductStore.products.slice(0, 3);
 
-    if (!product.value) {
+    if (!ProductSlug.productSlug) {
       router.push("/page-not-found");
     }
   });
@@ -166,5 +160,13 @@
     &__heading {
       margin-bottom: 4.7rem;
     }
+  }
+
+  .load {
+    display: flex;
+    height: 50vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 </style>

@@ -72,7 +72,7 @@
 <style lang="scss" scoped>
   .navigation-cart {
     background: var(--white-color);
-    border: 0.1rem solid var(--gray);
+
     height: 100vh;
     width: 100%;
     position: fixed;
@@ -84,6 +84,12 @@
     @media screen and (min-width: 480px) {
       width: 36rem;
       padding-top: 7.2rem;
+
+      margin: 10px;
+      height: 98vh;
+
+      border-radius: 15px;
+      box-shadow: -7px 7px 14px #b5b5b5ae, 7px -7px 14px #ffffff;
     }
 
     &__close {
@@ -114,7 +120,7 @@
       overflow-y: scroll;
 
       @media screen and (min-width: 480px) {
-        padding: 0 3.6rem 3.6rem;
+        // padding: 0 3.6rem 3.6rem;
       }
     }
 

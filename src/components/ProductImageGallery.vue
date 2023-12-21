@@ -12,7 +12,7 @@
         >
           <img
             class="single-product__thumbnail"
-            :src="image"
+            :src="image || undefined"
             alt="Product Image"
           />
         </SplideSlide>
@@ -30,7 +30,7 @@
         >
           <img
             class="single-product__img"
-            :src="image"
+            :src="image || undefined"
             alt="Product Image"
           />
         </SplideSlide>
@@ -45,7 +45,7 @@
   import "@splidejs/vue-splide/css";
 
   interface Props {
-    image: string;
+    image: string | null | undefined;
   }
 
   defineProps<Props>();
@@ -116,6 +116,8 @@
       width: 100%;
       min-height: 100%;
       object-fit: cover;
+
+      border-radius: 20px;
     }
   }
 

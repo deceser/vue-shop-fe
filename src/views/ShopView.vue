@@ -96,21 +96,24 @@
       </div>
       <!-- PRODUCTS -->
       <div class="shop-page__products">
-        <product-card-list>
+        <product-card-list v-if="ProductStore.isLoading">
           <ProductCardItemSkeleton
-            v-if="ProductStore.isLoading"
             v-for="_ in [...Array(6)]"
+            :key="Math.random()"
           >
           </ProductCardItemSkeleton>
+        </product-card-list>
+
+        <product-card-list v-else-if="filteredProducts.length">
           <product-card-item
-            v-if="filteredProducts.length"
             v-for="product in filteredProducts"
             :product="product"
+            :key="product.slug"
           ></product-card-item>
         </product-card-list>
 
         <EmptyState
-          v-if="!filteredProducts.length"
+          v-else
           type="shop"
           heading="No product found!"
           message="We could not find any product matching the selected filters. Kindly try out other filters to check out some of our other amazing products."
@@ -254,26 +257,33 @@
     }
 
     &__filter {
-      background-color: #fff;
+      // background-color: #fff;
+
+      border-radius: 15px;
+      box-shadow: -7px 7px 14px #b5b5b5ae, 7px -7px 14px #ffffff;
+
       position: fixed;
       top: 0;
       left: 0;
       height: 100vh;
       width: 100%;
       z-index: 1;
-      padding: 5rem 3rem;
       left: -100%;
       transition: all 0.3s linear;
+      padding: 15px;
 
       @media screen and (min-width: 992px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
         position: sticky;
-        padding: 0;
         height: 60rem;
-        padding-top: 1rem;
       }
 
       &--mobile {
         left: 0;
+        background-color: #ffffff;
       }
 
       .title {

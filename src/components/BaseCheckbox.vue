@@ -75,6 +75,10 @@
     width: 3.3rem;
     height: 2rem;
 
+    border-radius: 29px;
+    background: #e0e0e0;
+    box-shadow: -7px 7px 14px #b5b5b5, 7px -7px 14px #ffffff;
+
     input {
       opacity: 0;
       width: 0;

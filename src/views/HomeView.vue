@@ -1,7 +1,10 @@
 <template>
   <div class="home-page">
     <!-- HEADER SLIDER -->
-    <Splide :options="sliderOptions">
+    <Splide
+      class="slider-main"
+      :options="sliderOptions"
+    >
       <SplideSlide
         v-for="item in 5"
         :key="item"
@@ -54,7 +57,13 @@
   });
 
   const sliderOptions = reactive({
+    pauseOnFocus: false,
     arrows: false,
+    type: "loop",
+    autoplay: true,
+    interval: 3000,
+    easing: "cubic-bezier(0.42, 0, 0.58, 1)",
+    speed: 800,
     classes: {
       pagination: "splide__pagination splide__pagination--home",
     },
@@ -68,6 +77,12 @@
     &__heading {
       margin-bottom: 3.9rem;
     }
+  }
+
+  .slider-main {
+    border-radius: 29px;
+    background: #e0e0e0;
+    box-shadow: -7px 7px 14px #b5b5b5, 7px -7px 14px #ffffff;
   }
 
   .home-page .splide__pagination--home {

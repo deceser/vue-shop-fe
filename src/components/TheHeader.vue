@@ -22,8 +22,11 @@
       </li>
     </ul>
     <ul class="navigation__icons flex items-center space-between w-100">
-      <base-button class="hide-on-mobile">
-        <SearchIcon />
+      <base-button
+        @click="goToFavories"
+        class="navigation__link flex"
+      >
+        <IconHeart />
       </base-button>
       <base-button>
         <CartIcon @click="toggleCartSideMenu(true)" />
@@ -74,7 +77,7 @@
   import UserIcon from "@/components/icons/IconUser.vue";
   import MenuIcon from "@/components/icons/IconMenu.vue";
   import ShoppeLogo from "@/components/icons/ShoppeLogo.vue";
-  import SearchIcon from "@/components/icons/IconSearch.vue";
+  import IconHeart from "./icons/IconHeart.vue";
 
   import NavigationSidebar from "./NavigationSidebar.vue";
   import NavigationCartList from "./NavigationCartList.vue";
@@ -93,6 +96,10 @@
     router.push({ name: "auth" });
   };
 
+  const goToFavories = () => {
+    router.push({ name: "index" });
+  };
+
   const showCartSideMenu = ref(false);
   const showNavSideMenu = ref(false);
 
@@ -109,7 +116,6 @@
   .navigation {
     justify-content: space-between;
     padding-bottom: 1.7rem;
-    border-bottom: 0.1rem solid var(--light-gray);
 
     @media screen and (min-width: 768px) {
       justify-content: flex-start;
@@ -136,7 +142,7 @@
     }
 
     &__icons {
-      max-width: 5.4rem;
+      max-width: 10.4rem;
       gap: 1.6rem;
 
       @media screen and (min-width: 768px) {

@@ -89,16 +89,20 @@
       }
 
       img {
-        max-width: 100%;
-        max-height: 100%;
         height: auto;
         width: 100%;
+
+        object-fit: cover;
+
+        border-radius: 20px;
+        background: #e0e0e0;
+        box-shadow: -7px 7px 14px #b5b5b5, 7px -7px 14px #ffffff;
       }
 
       &--overlay {
         background: rgba(255, 255, 255, 0.6);
-        border-radius: 0.4rem 0.4rem 0 0;
-        height: 100%;
+        border-radius: 20px;
+        height: 99%;
         width: 100%;
         top: 0;
         left: 0;

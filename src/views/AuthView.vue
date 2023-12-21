@@ -114,6 +114,11 @@
   .auth-page {
     max-width: 50rem;
 
+    border-radius: 15px;
+    box-shadow: -7px 7px 14px #b5b5b5ae, 7px -7px 14px #ffffff;
+
+    padding: 30px;
+
     &__title {
       margin-bottom: 2.4rem;
 
