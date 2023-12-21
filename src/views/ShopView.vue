@@ -96,21 +96,24 @@
       </div>
       <!-- PRODUCTS -->
       <div class="shop-page__products">
-        <product-card-list>
+        <product-card-list v-if="ProductStore.isLoading">
           <ProductCardItemSkeleton
-            v-if="ProductStore.isLoading"
             v-for="_ in [...Array(6)]"
+            :key="Math.random()"
           >
           </ProductCardItemSkeleton>
+        </product-card-list>
+
+        <product-card-list v-else-if="filteredProducts.length">
           <product-card-item
-            v-if="filteredProducts.length"
             v-for="product in filteredProducts"
             :product="product"
+            :key="product.slug"
           ></product-card-item>
         </product-card-list>
 
         <EmptyState
-          v-if="!filteredProducts.length"
+          v-else
           type="shop"
           heading="No product found!"
           message="We could not find any product matching the selected filters. Kindly try out other filters to check out some of our other amazing products."
