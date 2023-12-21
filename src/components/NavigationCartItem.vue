@@ -64,6 +64,12 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 0.8rem;
 
+    border-radius: 10px;
+    background: #ececec;
+    box-shadow: 5px 5px 41px #aba8a8, -5px -5px 41px #ffffff;
+
+    padding: 10px;
+
     &:not(:last-child) {
       margin-bottom: 2.2rem;
     }
@@ -107,8 +113,8 @@
 
     &__remove {
       font-size: 1.8rem;
-      top: 0.8rem;
-      right: -0.5rem;
+      top: 1.5rem;
+      right: 1rem;
       line-height: 0;
     }
   }

@@ -2,7 +2,6 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 import { notify } from "@kyvg/vue3-notification";
 
 import useProductStore from "./ProductStore";
-import { string } from "yup";
 
 interface CartItem {
   slug: string;

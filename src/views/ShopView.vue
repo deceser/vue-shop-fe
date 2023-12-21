@@ -254,26 +254,33 @@
     }
 
     &__filter {
-      background-color: #fff;
+      // background-color: #fff;
+
+      border-radius: 15px;
+      box-shadow: -7px 7px 14px #b5b5b5ae, 7px -7px 14px #ffffff;
+
       position: fixed;
       top: 0;
       left: 0;
       height: 100vh;
       width: 100%;
       z-index: 1;
-      padding: 5rem 3rem;
       left: -100%;
       transition: all 0.3s linear;
+      padding: 15px;
 
       @media screen and (min-width: 992px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
         position: sticky;
-        padding: 0;
         height: 60rem;
-        padding-top: 1rem;
       }
 
       &--mobile {
         left: 0;
+        background-color: #ffffff;
       }
 
       .title {
