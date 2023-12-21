@@ -1,4 +1,5 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
+import { notify } from "@kyvg/vue3-notification";
 
 interface Product {
   image: string;
@@ -30,9 +31,18 @@ export const fetchingProducts = defineStore("products", {
         const response = await fetch("https://shop-gold-json.vercel.app/products");
         const data = await response.json();
 
+        if (!response.ok) {
+          throw new Error(`Error fetching products ${response.status}`);
+        }
+
         this.products = data;
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching products:", error);
+        notify({
+          type: "error",
+          text: error.message,
+          duration: 2000,
+        });
       } finally {
         this.isLoading = false;
       }

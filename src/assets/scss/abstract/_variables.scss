@@ -3,6 +3,7 @@
   --accent-color: #a18a68;
   --black-color: #000000;
   --white-color: #ffffff;
+  --bg-color-body: #ececec61;
 
   // NEUTRAL COLOR
   --dark-gray: #707070;
@@ -18,18 +19,4 @@
   --slider-connect-bg: var(--black-color);
   --slider-bg: var(--gray);
   --slider-radius: 0;
-
-  // Ligth theme
-
-  --main-background-color-light: #ffffff;
-  --text-color-light: var(--black-color);
-
-  // Dark theme
-
-  --main-background-color-dark: #4c4c4c;
-  --accent-color-dark: #daddd8;
-  --white-color-dark: #daddd8;
-  --gray-color-dark: #daddd8;
-  --dark-gray-color-dark: #daddd8;
-  --light-gray-color-dark: #daddd8;
 }

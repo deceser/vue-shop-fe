@@ -1,7 +1,7 @@
 <template>
   <div class="single-product">
-    <h3 class="single-product__name heading-2">{{ product.name }}</h3>
-    <p class="single-product__price heading-4 accent-text">$ {{ product.price }},00</p>
+    <h3 class="single-product__name heading-2">{{ product?.name }}</h3>
+    <p class="single-product__price heading-4 accent-text">$ {{ product?.price }},00</p>
 
     <div class="single-product__review flex items-center">
       <div class="single-product__rating">
@@ -116,7 +116,7 @@
   }
 
   interface Props {
-    product: Product;
+    product: Product | null;
   }
 
   defineProps<Props>();
