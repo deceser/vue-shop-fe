@@ -6,6 +6,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+
     "preserveValueImports": false,
     "isolatedModules": false,
     "importsNotUsedAsValues": "remove",
