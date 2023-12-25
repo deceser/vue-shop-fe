@@ -20,8 +20,11 @@ interface CartProduct extends CartItem {
 
 const useCartStore = defineStore("CartStore", {
   state: () => {
+    const storedCartItems = localStorage?.getItem("cartItems");
+    const cartItems = storedCartItems ? (JSON.parse(storedCartItems) as CartItem[]) : [];
+
     return {
-      cartItems: (JSON.parse(localStorage.getItem("cartItems") || "") as CartItem[]) || [],
+      cartItems,
     };
   },
 
