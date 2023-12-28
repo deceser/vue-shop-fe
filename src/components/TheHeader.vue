@@ -26,7 +26,10 @@
         @click="goToFavories"
         class="navigation__link flex"
       >
-        <IconHeart />
+        <IconHeart type="no-filled" />
+        <span v-if="favoriteItems.length">
+          {{ favoriteItems.length }}
+        </span>
       </base-button>
       <base-button>
         <CartIcon @click="toggleCartSideMenu(true)" />
@@ -69,7 +72,10 @@
 
 <script setup lang="ts">
   import { ref } from "vue";
+  import { storeToRefs } from "pinia";
   import { useRouter, RouterLink } from "vue-router";
+
+  import { useFavoriteStore } from "@/stores/FavoriteStore";
 
   import { navigationLinks } from "@/utils/data/navigationLinks";
 
@@ -83,6 +89,7 @@
   import NavigationCartList from "./NavigationCartList.vue";
 
   const router = useRouter();
+  const FavoriteStore = useFavoriteStore();
 
   interface Links {
     name?: string;
@@ -92,12 +99,15 @@
   const navigation = ref<Links[]>(navigationLinks);
   const navigationHeader = navigation.value.slice(0, -1);
 
+  const { items } = storeToRefs(FavoriteStore);
+  const favoriteItems = items.value;
+
   const goToDashboard = () => {
     router.push({ name: "auth" });
   };
 
   const goToFavories = () => {
-    router.push({ name: "index" });
+    router.push({ name: "favorite" });
   };
 
   const showCartSideMenu = ref(false);
