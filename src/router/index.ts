@@ -49,6 +49,11 @@ const router = createRouter({
       name: "privacy-policy",
       component: () => import("../views/PrivacyPolicyView.vue"),
     },
+    {
+      path: "/favorite",
+      name: "favorite",
+      component: () => import("../views/FavoriteView.vue"),
+    },
     // AUTH PAGES
     {
       path: "/forgot-password",

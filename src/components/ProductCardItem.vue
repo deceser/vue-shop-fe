@@ -25,8 +25,15 @@
             </base-button>
           </li>
           <li class="product__icon">
-            <base-button>
-              <HeartIcon />
+            <base-button @click="addProductToFavorite()">
+              <HeartIcon
+                v-if="isFavorite(product.slug)"
+                type="filled"
+              />
+              <HeartIcon
+                v-else
+                type="no-filled"
+              />
             </base-button>
           </li>
         </ul>
@@ -42,10 +49,12 @@
 <script setup lang="ts">
   import { useRouter } from "vue-router";
 
+  import useCartStore from "../stores/CartStore";
+  import { useFavoriteStore } from "@/stores/FavoriteStore";
+
   import EyeIcon from "./icons/IconEye.vue";
   import CartIcon from "./icons/IconCart.vue";
   import HeartIcon from "./icons/IconHeart.vue";
-  import useCartStore from "../stores/CartStore";
 
   interface Product {
     image: string;
@@ -56,6 +65,7 @@
     discountValue: number;
     variant: string;
     slug: string;
+    isFavorite?: boolean;
   }
 
   interface Props {
@@ -63,6 +73,13 @@
   }
 
   const CartStore = useCartStore();
+  const FavoriteStore = useFavoriteStore();
+
+  const { addItemToFavorite, isFavorite } = FavoriteStore;
+
+  const addProductToFavorite = () => {
+    addItemToFavorite(props.product);
+  };
 
   const props = defineProps<Props>();
   const router = useRouter();
